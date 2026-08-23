@@ -1,5 +1,5 @@
 """
-Ejemplo polimorfismo con elementos de Ciencias de Datos
+Ejemplo polimorfismo con elementos de Ciencias de Datos con predictores.
 """
 
 from abc import ABC, abstractmethod
