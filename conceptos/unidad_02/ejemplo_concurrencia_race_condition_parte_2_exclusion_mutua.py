@@ -4,12 +4,12 @@ import time
 
 class C:
     def __init__(self):
-        self.valor = 0
+        self.__valor = 0
         self.__lock = threading.Lock()
 
     def incrementar(self):
         with self.__lock:         # excluye ejecución simultánea dentro del ámbito with            valor_actual = self.__valor
-            valor_actual = self.valor
+            valor_actual = self.__valor
             time.sleep(0.0001)
             self.__valor = valor_actual + 1
     
@@ -18,6 +18,10 @@ class C:
             valor_actual = self.__valor
             time.sleep(0.0001)
             self.__valor = valor_actual - 1
+
+    @property
+    def valor(self):
+        return self.__valor
 
 
 class A:
