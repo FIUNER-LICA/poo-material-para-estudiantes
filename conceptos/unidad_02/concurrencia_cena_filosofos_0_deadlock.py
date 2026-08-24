@@ -69,17 +69,15 @@ if __name__ == "__main__":
 
     tenedores = [Tenedor(i) for i in range(5)]
 
-    filosofos = [
-        Filosofo(
-            i,
-            tenedores[i],
-            tenedores[(i + 1) % 5]
-        )
-        for i in range(5)
-    ]
+    filosofos = []
+    for i in range(5):
+        f = Filosofo(i, tenedores[i], tenedores[(i + 1) % 5])
+        filosofos.append(f)
 
     hilos = []
 
+    # un hilo hasta aquí
+    # separación en hilos que interactúan concurrentemente
     for filosofo in filosofos:
         hilo = threading.Thread(target=filosofo.vivir)
         hilos.append(hilo)
@@ -87,5 +85,7 @@ if __name__ == "__main__":
 
     for hilo in hilos:
         hilo.join()
+    # unión de todos los hilos
+    # un hilo desde aquí
 
     print("Fin")
