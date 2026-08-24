@@ -26,38 +26,38 @@ class Tenedor:
 
 class Filosofo:
     def __init__(self, numero, izquierdo, derecho):
-        self.numero = numero
-        self.tenedor_izquierdo = izquierdo
-        self.tenedor_derecho = derecho
+        self.__numero = numero
+        self.__tenedor_izquierdo = izquierdo
+        self.__tenedor_derecho = derecho
 
     def comer(self):
-        print(f"Filósofo {self.numero} intenta tomar "
-              f"tenedor {self.tenedor_izquierdo.numero}. ")
+        print(f"Filósofo {self.__numero} intenta tomar "
+              f"tenedor {self.__tenedor_izquierdo.numero}. ")
 
-        self.tenedor_izquierdo.levantar()
+        self.__tenedor_izquierdo.levantar()
 
-        print(f"Filósofo {self.numero} tomó "
-              f"tenedor {self.tenedor_izquierdo.numero}. ")
+        print(f"Filósofo {self.__numero} tomó "
+              f"tenedor {self.__tenedor_izquierdo.numero}. ")
 
         time.sleep(0.1)
 
-        print(f"Filósofo {self.numero} intenta tomar "
-              f"tenedor {self.tenedor_derecho.numero}. ")
+        print(f"Filósofo {self.__numero} intenta tomar "
+              f"tenedor {self.__tenedor_derecho.numero}. ")
 
-        self.tenedor_derecho.levantar()
+        self.__tenedor_derecho.levantar()
 
-        print(f"Filósofo {self.numero} está comiendo. ")
+        print(f"Filósofo {self.__numero} está comiendo. ")
 
         time.sleep(0.5)
 
-        self.derecho.dejar()
-        self.izquierdo.dejar()
+        self.__tenedor_derecho.dejar()
+        self.__tenedor_izquierdo.dejar()
 
-        print(f"Filósofo {self.numero} terminó de comer. ")
+        print(f"Filósofo {self.__numero} terminó de comer. ")
 
     def vivir(self):
         for _ in range(3):
-            print(f"Filósofo {self.numero} está pensando. ")
+            print(f"Filósofo {self.__numero} está pensando. ")
             time.sleep(0.1)
 
             self.comer()

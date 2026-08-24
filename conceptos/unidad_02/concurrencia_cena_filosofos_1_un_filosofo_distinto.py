@@ -26,40 +26,38 @@ class Tenedor:
 
 class Filosofo:
     def __init__(self, numero, izquierdo, derecho):
-        self.numero = numero
-        self.tenedor_izquierdo = izquierdo
-        self.tenedor_derecho = derecho
+        self.__numero = numero
+        self.__tenedor_izquierdo = izquierdo
+        self.__tenedor_derecho = derecho
 
     def comer(self):
-        primer_tenedor = self.tenedor_izquierdo
-        segundo_tenedor = self.tenedor_derecho
+        primer_tenedor = self.__tenedor_izquierdo
+        segundo_tenedor = self.__tenedor_derecho
 
-        if self.numero == 4:
-            primer_tenedor = self.tenedor_derecho
-            segundo_tenedor = self.tenedor_izquierdo
+        if self.__numero == 4:
+            primer_tenedor = self.__tenedor_derecho
+            segundo_tenedor = self.__tenedor_izquierdo
 
         primer_tenedor.levantar()
 
-        try:
-            time.sleep(0.1)
-            segundo_tenedor.levantar()
+        time.sleep(0.1)
 
-            try:
-                print(f"Filósofo {self.numero} está comiendo. ")
-                time.sleep(0.5)
+        segundo_tenedor.levantar()
 
-            finally:
-                segundo_tenedor.dejar()
+        print(f"Filósofo {self.__numero} está comiendo. ")
 
-        finally:
-            primer_tenedor.dejar()
+        time.sleep(0.5)
+
+        segundo_tenedor.dejar()
+        primer_tenedor.dejar()
 
     def vivir(self):
         for _ in range(3):
-            print(f"Filósofo {self.numero} está pensando. ")
+            print(f"Filósofo {self.__numero} está pensando. ")
             time.sleep(0.1)
 
             self.comer()
+
 
 if __name__ == "__main__":
 
