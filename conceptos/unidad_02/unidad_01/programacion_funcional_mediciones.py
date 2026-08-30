@@ -55,7 +55,7 @@ def agregar_fahrenheit(medicion: Medicion) -> Medicion:
         raise ValueError("La medicion debe contener una temperatura valida")
 
     return {
-        **medicion,
+        **medicion, # ** significa "desempaquetar" el diccionario original. Permite crear un nuevo diccionario con los mismos pares clave-valor.
         "fahrenheit": celsius_a_fahrenheit(float(celsius)),
     }
 
@@ -63,12 +63,14 @@ def agregar_fahrenheit(medicion: Medicion) -> Medicion:
 # 3. FUNCIONES COMO VALORES Y FUNCIONES DE ORDEN SUPERIOR
 def transformar_valor(
     valor: float,
-    conversion: Callable[[float], float],
+    conversion: Callable[[float], float], ## callable es un tipo que representa una funcion. En este caso, la funcion recibe un float y devuelve un float.
 ) -> float:
     return conversion(valor)
 
-
-# Una clausura permite configurar una transformacion sin crear una clase.
+# Un clausura en programacion funcional es una funcion que "recuerda" el contexto 
+# en el que fue creada. En este caso, la funcion convertir recuerda los valores
+# de factor y desplazamiento que se le pasaron a crear_conversor.
+# Permite configurar una transformacion sin crear una clase.
 def crear_conversor(
     factor: float,
     desplazamiento: float,
@@ -110,6 +112,9 @@ def temperatura_promedio(mediciones: list[Medicion]) -> float | None:
 
     return fmean(temperaturas) if temperaturas else None
 
+# FUNCION PRINCIPAL
+# esta parte del código muestra los resultados de las funciones anteriores, 
+# incluyendo la verificación de que los datos originales no fueron modificados.
 
 def mostrar_resultados() -> None:
     resultado = procesar_mediciones(MEDICIONES)
