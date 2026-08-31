@@ -1,0 +1,44 @@
+import sys
+import time
+from pathlib import Path
+from statistics import mean, stdev
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+import load_data as ld  # noqa: E402
+
+
+DATA_DIR = Path(__file__).resolve().parent / "datos_ejemplo"
+
+
+def count_words(filename, encoding="utf-8", delay_seconds=0):
+    """Cuenta palabras separadas por cualquier espacio en blanco."""
+    if delay_seconds:
+        time.sleep(delay_seconds)
+    with open(filename, "r", encoding=encoding) as file:
+        return len(file.read().split())
+
+
+def count_words_in_all_files(filenames, delay_seconds=0):
+    words = 0
+    for filename in filenames:
+        words += count_words(filename, delay_seconds=delay_seconds)
+    return words
+
+
+def test_count_words_in_all_files(filenames, N=2, delay_seconds=0):
+    duration_times = []
+    word_count = 0
+    for _ in range(N):
+        start_time = time.time()
+        word_count = count_words_in_all_files(filenames, delay_seconds)
+        duration_times.append(time.time() - start_time)
+    return word_count, mean(duration_times), stdev(duration_times) if N > 1 else 0
+
+
+if __name__ == "__main__":
+    # Para usar IMDB, cambiar por: ["data/aclImdb/test/neg", "data/aclImdb/test/pos"]
+    paths = [DATA_DIR]
+    filenames = ld.load_filenames(paths)
+
+    words, t_m, t_std = test_count_words_in_all_files(filenames)
+    print(f"{words} palabras en {len(filenames)} archivos en {t_m:.3f} segundos")

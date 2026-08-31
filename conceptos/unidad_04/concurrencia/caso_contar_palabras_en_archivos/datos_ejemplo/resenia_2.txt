@@ -1,0 +1,1 @@
+Los hilos pueden ayudar cuando el programa pasa mucho tiempo esperando archivos o red.

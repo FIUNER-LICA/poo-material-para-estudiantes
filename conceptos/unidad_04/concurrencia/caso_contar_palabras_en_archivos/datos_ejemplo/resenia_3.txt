@@ -1,0 +1,1 @@
+Multiprocessing crea procesos separados y suele servir mejor para trabajo intensivo de CPU.

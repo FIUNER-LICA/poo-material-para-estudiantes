@@ -1,0 +1,1 @@
+Python permite resolver algunos problemas de entrada y salida mientras otras tareas esperan.
